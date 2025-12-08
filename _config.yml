@@ -1,0 +1,19 @@
+title: Gnod
+email: dongyeon.park@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Dongyeon Park's personal website. Upload posts about life events and
+  engineering.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+permalink: /:categories/:title
+
+github_username: plzfday
+
+theme: minima
+plugins:
+  - jekyll-feed
+
+exclude:
+  - mise.toml
+  - vendor
+  - Gemfile*
