@@ -12,6 +12,7 @@ github_username: plzfday
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
 
 exclude:
   - mise.toml
