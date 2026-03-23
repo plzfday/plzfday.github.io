@@ -1,0 +1,254 @@
+---
+---
+
+:root {
+  color-scheme: light;
+  --bg: #fcfcf9;
+  --fg: #1f1f1c;
+  --muted: #6b6b63;
+  --line: #ddddcf;
+  --link: #1c5c46;
+  --code-bg: #f3f1e8;
+  --code-border: #d8d2c0;
+  --code-inline-bg: #ece8db;
+  --code-comment: #7b7f73;
+  --code-keyword: #8f2d56;
+  --code-string: #20603d;
+  --code-number: #9a4d00;
+  --code-type: #234f8c;
+  --code-accent: #5b3cc4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
+    "Segoe UI", sans-serif;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--link);
+}
+
+img {
+  max-width: 100%;
+}
+
+pre,
+code {
+  font-family: "SFMono-Regular", Consolas, Monaco, monospace;
+  tab-size: 4;
+}
+
+pre {
+  overflow-x: auto;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: var(--code-bg);
+  border-color: var(--code-border);
+  border-radius: 12px;
+}
+
+code {
+  font-size: 0.95em;
+}
+
+p code,
+li code,
+blockquote code,
+td code {
+  padding: 0.12em 0.38em;
+  border-radius: 6px;
+  background: var(--code-inline-bg);
+}
+
+.highlighter-rouge,
+.highlight {
+  margin: 1.25rem 0;
+  border-radius: 12px;
+  background: var(--code-bg);
+}
+
+.highlighter-rouge pre,
+.highlight pre {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.highlighter-rouge code,
+.highlight code {
+  display: block;
+  color: #20201c;
+}
+
+.highlight .c,
+.highlight .c1,
+.highlight .cm {
+  color: var(--code-comment);
+}
+
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .nt {
+  color: var(--code-keyword);
+}
+
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sa,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sr,
+.highlight .ss {
+  color: var(--code-string);
+}
+
+.highlight .mi,
+.highlight .mf,
+.highlight .mh,
+.highlight .il {
+  color: var(--code-number);
+}
+
+.highlight .kt,
+.highlight .nc,
+.highlight .nf {
+  color: var(--code-type);
+}
+
+.highlight .na,
+.highlight .nb,
+.highlight .nv,
+.highlight .o {
+  color: var(--code-accent);
+}
+
+blockquote {
+  margin-left: 0;
+  padding-left: 16px;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+
+.layout {
+  width: min(720px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+
+.site-header {
+  margin-bottom: 48px;
+}
+
+.site-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.site-title a {
+  color: inherit;
+  text-decoration: none;
+  font-family: "Caveat", "Apple Chancery", "Snell Roundhand", cursive;
+  font-size: 1.3em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.site-description {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.site-nav {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.site-main {
+  min-height: 50vh;
+}
+
+.site-footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.page-title,
+.post-header h1 {
+  margin-bottom: 8px;
+}
+
+.post-header {
+  margin-bottom: 32px;
+}
+
+.post-meta,
+.post-list-meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-year-group + .post-year-group {
+  margin-top: 40px;
+}
+
+.post-year-heading {
+  margin-bottom: 8px;
+}
+
+.post-year-heading h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.post-list-item {
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+
+.post-list-link {
+  color: inherit;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.post-list-link:hover,
+.post-list-link:focus {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .layout {
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+}

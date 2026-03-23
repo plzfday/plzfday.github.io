@@ -10,7 +10,7 @@ permalink: /:categories/:title
 github_username: plzfday
 linkedin_username: dongyeonpark
 
-theme: minima
+theme: gnod-theme
 plugins:
   - jekyll-feed
   - jekyll-sitemap
