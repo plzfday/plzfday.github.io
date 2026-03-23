@@ -10,12 +10,12 @@ permalink: /:categories/:title
 github_username: plzfday
 linkedin_username: dongyeonpark
 
-theme: gnod-theme
 plugins:
   - jekyll-feed
   - jekyll-sitemap
 
 exclude:
+  - gnod-theme
   - mise.toml
   - vendor
   - Gemfile*
