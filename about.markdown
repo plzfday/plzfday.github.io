@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+description: About Dongyeon Park, a software engineer in South Korea working on backend systems and automotive security.
 ---
 
 A software engineer, based in South Korea, building services with backend expertise.
