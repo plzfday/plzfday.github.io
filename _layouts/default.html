@@ -15,7 +15,9 @@
         {{ site.title }}
       {% endif %}
     </title>
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <style>
+      {% include main.scss %}
+    </style>
   </head>
   <body>
     <div class="layout">
