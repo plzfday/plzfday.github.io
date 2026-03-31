@@ -16,6 +16,33 @@
   --code-accent: #5b3cc4;
 }
 
+@font-face {
+  font-family: "Pretendard";
+  src: url("{{ '/assets/fonts/Pretendard-Regular.woff2' | relative_url }}")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("{{ '/assets/fonts/Pretendard-Bold.woff2' | relative_url }}")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Caveat";
+  src: url("{{ '/assets/fonts/Caveat-600-latin.woff2' | relative_url }}")
+    format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -28,13 +55,20 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
-    system-ui, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic",
-    "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", "Segoe UI", sans-serif;
   line-height: 1.7;
   word-break: keep-all;
   overflow-wrap: break-word;
   text-rendering: optimizeLegibility;
+}
+
+@media (min-width: 641px) {
+  body {
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+      "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI",
+      sans-serif;
+  }
 }
 
 a {
@@ -163,6 +197,7 @@ blockquote {
 .site-title {
   margin: 0;
   font-size: 2rem;
+  font-weight: 700;
 }
 
 .site-title a {
@@ -201,6 +236,7 @@ blockquote {
 .page-title,
 .post-header h1 {
   margin-bottom: 8px;
+  font-weight: 700;
 }
 
 .post-header {
@@ -231,6 +267,7 @@ blockquote {
   margin: 0;
   font-size: 1.4rem;
   line-height: 1.2;
+  font-weight: 700;
 }
 
 .post-list-item {
