@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""Create a Jekyll post after choosing a category."""
+
+import json
+import re
+import shlex
+import sys
+from datetime import datetime
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+POSTS_DIR = REPO_ROOT / "_posts"
+
+
+def existing_categories():
+    categories = set()
+    for path in POSTS_DIR.glob("*"):
+        if path.suffix not in {".md", ".markdown"}:
+            continue
+        lines = path.read_text(encoding="utf-8").splitlines()
+        if not lines or lines[0] != "---":
+            continue
+        for line in lines[1:]:
+            if line == "---":
+                break
+            match = re.match(r"^categories:\s*(.*)$", line)
+            if match:
+                value = match.group(1).strip()
+                if value.startswith("[") and value.endswith("]"):
+                    lexer = shlex.shlex(value[1:-1], posix=True)
+                    lexer.whitespace += ","
+                    lexer.whitespace_split = True
+                    categories.update(lexer)
+                else:
+                    categories.update(shlex.split(value, comments=True))
+    return sorted(categories, key=str.casefold)
+
+
+def prompt_category():
+    categories = existing_categories()
+    if categories:
+        print("기존 카테고리:")
+        for number, category in enumerate(categories, start=1):
+            print(f"  {number}. {category}")
+    while True:
+        value = input("카테고리 (번호 또는 새 이름): ").strip()
+        if not value:
+            print("카테고리를 입력해주세요.")
+        elif value.isdecimal():
+            number = int(value)
+            if 1 <= number <= len(categories):
+                return categories[number - 1]
+            print("목록에 있는 번호를 입력해주세요.")
+        else:
+            for category in categories:
+                if category.casefold() == value.casefold():
+                    if category != value:
+                        print(f"기존 카테고리 '{category}'로 저장합니다.")
+                    return category
+            return value
+
+
+def main():
+    category = prompt_category()
+    now = datetime.now().astimezone()
+    filename = f"{now:%Y-%m-%d}-untitled-{now:%H%M%S}.md"
+    filepath = POSTS_DIR / filename
+    content = (
+        "---\n"
+        "layout: post\n"
+        'title: "새 글"\n'
+        f"date: {now:%Y-%m-%d %H:%M:%S %z}\n"
+        f"categories: [{json.dumps(category, ensure_ascii=False)}]\n"
+        "---\n"
+        "\n"
+    )
+
+    POSTS_DIR.mkdir(parents=True, exist_ok=True)
+    try:
+        with filepath.open("x", encoding="utf-8") as post:
+            post.write(content)
+    except FileExistsError:
+        print(f"이미 존재하는 파일입니다: {filepath}")
+        sys.exit(1)
+    print(f"생성됨: {filepath.relative_to(REPO_ROOT)}")
+    print("파일에서 제목을 수정하고, 게시 전에 파일명의 untitled 부분을 바꿔주세요.")
+
+
+if __name__ == "__main__":
+    main()
