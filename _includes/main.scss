@@ -260,7 +260,13 @@ blockquote {
 }
 
 .post-list-meta {
-  margin-top: 4px;
+  justify-content: flex-end;
+  max-width: 14rem;
+}
+
+.post-list-meta time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .post-category {
@@ -292,22 +298,28 @@ blockquote {
   margin: 0;
 }
 
+.post-year-group,
+.post-category-group {
+  margin-top: 32px;
+}
+
 .post-year-group + .post-year-group,
 .post-category-group + .post-category-group {
-  margin-top: 40px;
+  margin-top: 48px;
 }
 
 .post-year-heading,
 .post-category-heading {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .post-year-heading h2,
 .post-category-heading h2 {
   margin: 0;
-  font-size: 1.4rem;
-  line-height: 1.2;
-  font-weight: 700;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 .post-category-group {
@@ -316,29 +328,50 @@ blockquote {
 
 .post-category-count {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 400;
 }
 
 .post-list-item {
-  padding: 18px 0;
-  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 4px 24px;
+  padding: 10px 0;
 }
 
 .post-list-link {
   color: inherit;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
   text-decoration: none;
+  text-underline-offset: 4px;
 }
 
 .post-list-link:hover,
-.post-list-link:focus {
+.post-list-link:focus-visible {
+  color: var(--link);
   text-decoration: underline;
+}
+
+.post-list-link:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 4px;
 }
 
 @media (max-width: 640px) {
   .layout {
     padding-top: 32px;
     padding-bottom: 48px;
+  }
+
+  .post-list-item {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px 0;
+  }
+
+  .post-list-meta {
+    justify-content: flex-start;
+    max-width: none;
   }
 }
