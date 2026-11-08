@@ -1,39 +1,57 @@
 :root {
   color-scheme: light dark;
-  --bg: #fcfcf9;
-  --fg: #1f1f1c;
-  --muted: #6b6b63;
-  --line: #ddddcf;
-  --link: #1c5c46;
-  --code-fg: #20201c;
-  --code-bg: #f3f1e8;
-  --code-border: #d8d2c0;
-  --code-inline-bg: #ece8db;
-  --code-comment: #7b7f73;
-  --code-keyword: #8f2d56;
-  --code-string: #20603d;
-  --code-number: #9a4d00;
-  --code-type: #234f8c;
-  --code-accent: #5b3cc4;
+  --bg: light-dark(#fcfcf9, #161614);
+  --fg: light-dark(#1f1f1c, #e8e6df);
+  --muted: light-dark(#6b6b63, #9c9b91);
+  --line: light-dark(#ddddcf, #34342e);
+  --link: light-dark(#1c5c46, #7cc4a6);
+  --code-fg: light-dark(#20201c, #e3e1d8);
+  --code-bg: light-dark(#f3f1e8, #1f1f1b);
+  --code-border: light-dark(#d8d2c0, #34342e);
+  --code-inline-bg: light-dark(#ece8db, #2a2a25);
+  --code-comment: light-dark(#7b7f73, #8b8f83);
+  --code-keyword: light-dark(#8f2d56, #e48bb0);
+  --code-string: light-dark(#20603d, #8fcf9f);
+  --code-number: light-dark(#9a4d00, #e0a560);
+  --code-type: light-dark(#234f8c, #8fb4ea);
+  --code-accent: light-dark(#5b3cc4, #b29cf5);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #161614;
-    --fg: #e8e6df;
-    --muted: #9c9b91;
-    --line: #34342e;
-    --link: #7cc4a6;
-    --code-fg: #e3e1d8;
-    --code-bg: #1f1f1b;
-    --code-border: #34342e;
-    --code-inline-bg: #2a2a25;
-    --code-comment: #8b8f83;
-    --code-keyword: #e48bb0;
-    --code-string: #8fcf9f;
-    --code-number: #e0a560;
-    --code-type: #8fb4ea;
-    --code-accent: #b29cf5;
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+@property --reveal {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  mask-image: linear-gradient(
+    to bottom left,
+    #000 calc(var(--reveal) - 20%),
+    transparent var(--reveal)
+  );
+  animation: theme-reveal 0.7s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes theme-reveal {
+  from {
+    --reveal: 0%;
+  }
+  to {
+    --reveal: 120%;
   }
 }
 
@@ -282,6 +300,13 @@ blockquote {
   color: var(--muted);
 }
 
+.theme-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
 .social-link:hover,
 .social-link:focus-visible {
   color: var(--link);
@@ -293,7 +318,8 @@ blockquote {
   fill: currentColor;
 }
 
-.site-nav a:focus-visible {
+.site-nav a:focus-visible,
+.theme-toggle:focus-visible {
   outline: 2px solid var(--link);
   outline-offset: 4px;
   border-radius: 2px;

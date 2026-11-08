@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      try {
+        var theme = localStorage.getItem("theme");
+        if (theme) document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    </script>
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
     <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="preload" href="{{ '/assets/fonts/Caveat-600-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
@@ -26,6 +32,9 @@
             <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="is-active" aria-current="page"{% endif %}>About</a>
             <span class="site-social">
               {% include social-links.html %}
+              <button class="social-link theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 1.5v13a6.5 6.5 0 0 1 0-13z"/></svg>
+              </button>
             </span>
           </nav>
         </div>
@@ -43,6 +52,25 @@
       </footer>
     </div>
     <script>
+      document.querySelector(".theme-toggle").addEventListener("click", function () {
+        var systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
+        var current = document.documentElement.dataset.theme || (systemDark ? "dark" : "light");
+        var next = current === "dark" ? "light" : "dark";
+        var followsSystem = (next === "dark") === systemDark;
+        try {
+          if (followsSystem) localStorage.removeItem("theme");
+          else localStorage.setItem("theme", next);
+        } catch (e) {}
+        function apply() {
+          if (followsSystem) delete document.documentElement.dataset.theme;
+          else document.documentElement.dataset.theme = next;
+        }
+        if (document.startViewTransition && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          document.startViewTransition(apply);
+        } else {
+          apply();
+        }
+      });
       document.querySelectorAll(".js-email").forEach(function (link) {
         var subject = link.dataset.subject;
         link.href = "mailto:" + link.dataset.user + "@" + link.dataset.domain +
