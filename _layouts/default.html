@@ -42,5 +42,12 @@
         <p>Copyright &copy; {{ 'now' | date: '%Y' }} Dongyeon Park.</p>
       </footer>
     </div>
+    <script>
+      document.querySelectorAll(".js-email").forEach(function (link) {
+        var subject = link.dataset.subject;
+        link.href = "mailto:" + link.dataset.user + "@" + link.dataset.domain +
+          (subject ? "?subject=" + encodeURIComponent("Re: " + subject) : "");
+      });
+    </script>
   </body>
 </html>

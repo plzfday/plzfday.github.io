@@ -1,0 +1,26 @@
+#!/bin/sh
+# Reject images over 1 MB and unprocessed photo formats.
+# Run scripts/add_image to resize photos and strip their metadata first.
+# Enable once per clone: git config core.hooksPath .githooks
+
+limit=1048576
+status=0
+
+for file in $(git diff --cached --name-only --diff-filter=AM); do
+  case "$file" in
+    *.heic|*.HEIC|*.heif|*.HEIF)
+      echo "pre-commit: $file is HEIC. Convert it with scripts/add_image." >&2
+      status=1
+      continue
+      ;;
+    *.jpg|*.JPG|*.jpeg|*.JPEG|*.png|*.PNG|*.gif|*.GIF|*.webp|*.WEBP) ;;
+    *) continue ;;
+  esac
+  size=$(git cat-file -s ":$file")
+  if [ "$size" -gt "$limit" ]; then
+    echo "pre-commit: $file is $((size / 1024)) KB (limit 1024 KB). Resize it with scripts/add_image." >&2
+    status=1
+  fi
+done
+
+exit $status

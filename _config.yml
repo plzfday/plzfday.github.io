@@ -6,7 +6,7 @@ url: "https://12488421.xyz"
 lang: ko
 author: Dongyeon Park
 permalink: /:categories/:title
-image_base: "https://raw.githubusercontent.com/plzfday/plzfday-assets/refs/heads/main"
+image_base: "/assets/images"
 
 github_username: plzfday
 linkedin_username: dongyeonpark

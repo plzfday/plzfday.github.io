@@ -1,0 +1,2 @@
+{%- assign email_parts = site.email | split: "@" -%}
+<a class="js-email" data-user="{{ email_parts[0] }}" data-domain="{{ email_parts[1] }}"{% if include.subject %} data-subject="{{ include.subject | escape }}"{% endif %} href="{{ '/about/' | relative_url }}">{{ include.text }}</a>

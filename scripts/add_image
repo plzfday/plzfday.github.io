@@ -1,0 +1,81 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["pillow>=10", "pillow-heif>=0.16"]
+# ///
+"""Add photos to a post: resize, strip metadata (including GPS), save, print markdown.
+
+    scripts/add_image <post-slug> <photo> [<photo> ...]
+
+Photos are saved to assets/images/<post-slug>/ as JPEG, at most 1600px on
+the long side. Every EXIF field is dropped after applying the orientation,
+so location data never reaches the repo.
+"""
+
+import io
+import re
+import sys
+from pathlib import Path
+
+from PIL import Image, ImageCms, ImageOps
+from pillow_heif import register_heif_opener
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+IMAGES_DIR = REPO_ROOT / "assets" / "images"
+MAX_SIDE = 1600
+QUALITY = 82
+MAX_BYTES = 1024 * 1024
+
+
+def slugify(text):
+    slug = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+    return slug or "image"
+
+
+def unique_path(directory, stem):
+    candidate = directory / f"{stem}.jpg"
+    counter = 2
+    while candidate.exists():
+        candidate = directory / f"{stem}-{counter}.jpg"
+        counter += 1
+    return candidate
+
+
+def save_clean(source, target):
+    with Image.open(source) as image:
+        icc = image.info.get("icc_profile")
+        image = ImageOps.exif_transpose(image)
+        image.thumbnail((MAX_SIDE, MAX_SIDE), Image.Resampling.LANCZOS)
+        image = image.convert("RGB")
+        if icc:
+            # iPhone photos are Display P3; convert to sRGB before the profile is dropped.
+            source_profile = ImageCms.ImageCmsProfile(io.BytesIO(icc))
+            image = ImageCms.profileToProfile(image, source_profile, ImageCms.createProfile("sRGB"))
+        # A fresh image carries no EXIF, XMP, or ICC metadata from the source.
+        clean = Image.new("RGB", image.size)
+        clean.paste(image)
+        clean.save(target, "JPEG", quality=QUALITY, optimize=True, progressive=True)
+    return clean.size
+
+
+def main():
+    if len(sys.argv) < 3:
+        sys.exit(__doc__.strip())
+
+    register_heif_opener()
+    post_slug = slugify(sys.argv[1])
+    directory = IMAGES_DIR / post_slug
+    directory.mkdir(parents=True, exist_ok=True)
+
+    for arg in sys.argv[2:]:
+        source = Path(arg).expanduser()
+        target = unique_path(directory, slugify(source.stem))
+        width, height = save_clean(source, target)
+        size = target.stat().st_size
+        warning = "  (over 1 MB, the pre-commit hook will reject it)" if size > MAX_BYTES else ""
+        print(f"# {source.name} -> {target.relative_to(REPO_ROOT)} ({width}x{height}, {size // 1024} KB){warning}", file=sys.stderr)
+        print(f"![]({{{{ site.image_base }}}}/{post_slug}/{target.name})")
+
+
+if __name__ == "__main__":
+    main()

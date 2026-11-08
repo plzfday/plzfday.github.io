@@ -104,13 +104,7 @@ description: "Dongyeon: software engineer building cybersecurity testing softwar
 
   <dt>Follow</dt>
   <dd>
-    <p><a href="{{ '/feed.xml' | relative_url }}">RSS</a> · <a href="https://github.com/{{ site.github_username }}">GitHub</a> · <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}">LinkedIn</a> · <a class="js-email" data-user="dongyeonpark01" data-domain="gmail.com" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">Email</a></p>
+    <p><a href="{{ '/feed.xml' | relative_url }}">RSS</a> · <a href="https://github.com/{{ site.github_username }}">GitHub</a> · <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}">LinkedIn</a> · {% include email-link.html text="Email" %}</p>
     <p class="note">My career history lives on LinkedIn.</p>
   </dd>
 </dl>
-
-<script>
-  document.querySelectorAll(".js-email").forEach(function (link) {
-    link.href = "mailto:" + link.dataset.user + "@" + link.dataset.domain;
-  });
-</script>

@@ -16,7 +16,7 @@ layout: default
 
   <footer class="post-footer">
     <p class="post-follow">
-      Enjoyed this? Follow along via <a href="{{ '/feed.xml' | relative_url }}">RSS</a> or <a href="https://github.com/{{ site.github_username }}">GitHub</a>.
+      Enjoyed this? Follow along via <a href="{{ '/feed.xml' | relative_url }}">RSS</a> or <a href="https://github.com/{{ site.github_username }}">GitHub</a>, or {% include email-link.html text="reply by email" subject=page.title %}.
     </p>
 
     {% if page.previous or page.next %}
