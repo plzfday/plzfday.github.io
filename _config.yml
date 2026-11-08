@@ -1,8 +1,6 @@
 title: Gnod
 email: dongyeonpark01@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Dongyeon Park's personal website. Upload posts about life events and
-  engineering.
+description: Notes on engineering and life. Mostly in Korean.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 permalink: /:categories/:title

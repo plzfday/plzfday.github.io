@@ -13,7 +13,7 @@ layout: default
     <ul class="post-list">
       {% for post in posts %}
         <li class="post-list-item">
-          <a href="{{ post.url | relative_url }}" class="post-list-link">
+          <a href="{{ post.url | relative_url }}" class="post-list-link"{% if post.lang %} lang="{{ post.lang }}"{% endif %}>
             {{ post.title }}
           </a>
           <div class="post-list-meta">

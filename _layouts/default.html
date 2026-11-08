@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ meta_description | escape }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
     <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="preload" href="{{ '/assets/fonts/Caveat-600-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
     <title>
@@ -21,18 +22,24 @@
   </head>
   <body>
     <div class="layout">
+      {% if page.url == '/' %}{% assign title_tag = 'h1' %}{% else %}{% assign title_tag = 'p' %}{% endif %}
       <header class="site-header">
-        <h1 class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <div class="site-header-bar">
+          <{{ title_tag }} class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></{{ title_tag }}>
+          <nav class="site-nav" aria-label="Main">
+            {% assign posts_section = false %}
+            {% if page.url == '/archive/' or page.layout == 'post' %}{% assign posts_section = true %}{% endif %}
+            <a href="{{ '/archive/' | relative_url }}"{% if posts_section %} class="is-active"{% endif %}{% if page.url == '/archive/' %} aria-current="page"{% endif %}>Posts</a>
+            <a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} class="is-active" aria-current="page"{% endif %}>Projects</a>
+            <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="is-active" aria-current="page"{% endif %}>About</a>
+            <span class="site-social">
+              {% include social-links.html %}
+            </span>
+          </nav>
+        </div>
         {% if site.description %}
-          <p class="site-description">{{ site.description }}</p>
+          <p class="site-description" lang="en">{{ site.description }}</p>
         {% endif %}
-        <nav class="site-nav">
-          <a href="{{ '/' | relative_url }}">Home</a>
-          <a href="{{ '/archive/' | relative_url }}">Archive</a>
-          <a href="{{ '/categories/' | relative_url }}">Categories</a>
-          <a href="{{ '/projects/' | relative_url }}">Projects</a>
-          <a href="{{ '/about/' | relative_url }}">About</a>
-        </nav>
       </header>
 
       <main class="site-main">

@@ -1,10 +1,21 @@
 ---
 layout: page
-title: Archive
+title: Posts
 permalink: /archive/
 ---
 
 {% assign posts = site.posts | sort: "date" | reverse %}
+{% assign categories = site.categories | sort %}
+
+{% if categories.size > 0 %}
+  <nav class="category-filter" aria-label="Filter by category">
+    <a class="category-chip" href="{{ '/archive/' | relative_url }}" data-category="">All <span class="category-chip-count">{{ posts.size }}</span></a>
+    {% for category in categories %}
+      {% assign category_slug = category[0] | slugify: 'pretty' %}
+      <a class="category-chip" href="{{ '/archive/' | relative_url }}?category={{ category_slug | uri_escape }}" data-category="{{ category_slug | escape }}">{{ category[0] | replace: "-", " " | replace: "_", " " | capitalize | escape }} <span class="category-chip-count">{{ category[1].size }}</span></a>
+    {% endfor %}
+  </nav>
+{% endif %}
 
 {% if posts.size > 0 %}
   {% assign current_year = "" %}
@@ -25,8 +36,9 @@ permalink: /archive/
       {% assign current_year = post_year %}
     {% endif %}
 
-    <li class="post-list-item">
-      <a href="{{ post.url | relative_url }}" class="post-list-link">
+    {% capture post_category_slugs %}{% for category in post.categories %} {{ category | slugify: 'pretty' }}{% endfor %} {% endcapture %}
+    <li class="post-list-item" data-categories="{{ post_category_slugs | escape }}">
+      <a href="{{ post.url | relative_url }}" class="post-list-link"{% if post.lang %} lang="{{ post.lang }}"{% endif %}>
         {{ post.title }}
       </a>
       <div class="post-list-meta">
@@ -42,3 +54,22 @@ permalink: /archive/
 {% else %}
   <p>No posts yet.</p>
 {% endif %}
+
+<script>
+  (function () {
+    var selected = new URLSearchParams(location.search).get("category") || "";
+    document.querySelectorAll(".category-chip").forEach(function (chip) {
+      if (chip.dataset.category === selected) chip.setAttribute("aria-current", "page");
+    });
+    if (!selected) return;
+    document.querySelectorAll(".post-year-group").forEach(function (group) {
+      var visible = 0;
+      group.querySelectorAll(".post-list-item").forEach(function (item) {
+        var match = item.dataset.categories.indexOf(" " + selected + " ") !== -1;
+        item.hidden = !match;
+        if (match) visible++;
+      });
+      group.hidden = visible === 0;
+    });
+  })();
+</script>

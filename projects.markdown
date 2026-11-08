@@ -1,4 +1,5 @@
 ---
+lang: en
 layout: page
 title: Projects
 permalink: /projects/
@@ -6,13 +7,6 @@ description: Things Dongyeon Park is building, and why.
 ---
 
 <style>
-  .projects-lede {
-    margin: 0 0 40px;
-    font-family: "Caveat", "Apple Chancery", "Snell Roundhand", cursive;
-    font-size: 1.6rem;
-    line-height: 1.3;
-    color: var(--muted);
-  }
   .project {
     padding: 32px 0;
     border-top: 1px solid var(--line);
@@ -61,7 +55,7 @@ description: Things Dongyeon Park is building, and why.
   }
 </style>
 
-<p class="projects-lede">Small things I build because something bothered me.</p>
+<p class="page-lede">Small things I build because something bothered me.</p>
 
 <section class="project">
   <div class="project-head">

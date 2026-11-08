@@ -1,10 +1,11 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --bg: #fcfcf9;
   --fg: #1f1f1c;
   --muted: #6b6b63;
   --line: #ddddcf;
   --link: #1c5c46;
+  --code-fg: #20201c;
   --code-bg: #f3f1e8;
   --code-border: #d8d2c0;
   --code-inline-bg: #ece8db;
@@ -14,6 +15,26 @@
   --code-number: #9a4d00;
   --code-type: #234f8c;
   --code-accent: #5b3cc4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161614;
+    --fg: #e8e6df;
+    --muted: #9c9b91;
+    --line: #34342e;
+    --link: #7cc4a6;
+    --code-fg: #e3e1d8;
+    --code-bg: #1f1f1b;
+    --code-border: #34342e;
+    --code-inline-bg: #2a2a25;
+    --code-comment: #8b8f83;
+    --code-keyword: #e48bb0;
+    --code-string: #8fcf9f;
+    --code-number: #e0a560;
+    --code-type: #8fb4ea;
+    --code-accent: #b29cf5;
+  }
 }
 
 @font-face {
@@ -58,6 +79,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
     "Noto Sans KR", "Malgun Gothic", "Segoe UI", sans-serif;
   line-height: 1.7;
+  letter-spacing: -0.011em;
   word-break: keep-all;
   overflow-wrap: break-word;
   text-rendering: optimizeLegibility;
@@ -75,6 +97,10 @@ a {
   color: var(--link);
 }
 
+[hidden] {
+  display: none !important;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -83,6 +109,7 @@ img {
 pre,
 code {
   font-family: "SFMono-Regular", Consolas, Monaco, monospace;
+  letter-spacing: 0;
   tab-size: 4;
 }
 
@@ -124,7 +151,7 @@ td code {
 .highlighter-rouge code,
 .highlight code {
   display: block;
-  color: #20201c;
+  color: var(--code-fg);
 }
 
 .highlight .c,
@@ -191,35 +218,134 @@ blockquote {
 }
 
 .site-header {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
+}
+
+.site-header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
 }
 
 .site-title {
   margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1;
 }
 
 .site-title a {
   color: inherit;
   text-decoration: none;
   font-family: "Caveat", "Apple Chancery", "Snell Roundhand", cursive;
-  font-size: 1.3em;
   font-weight: 600;
   letter-spacing: 0.02em;
-  line-height: 1;
 }
 
 .site-description {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .site-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 12px;
+  align-items: center;
+  gap: 4px 20px;
+}
+
+.site-nav > a {
+  color: var(--muted);
+  text-decoration: none;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+.site-nav > a:hover,
+.site-nav > a:focus-visible {
+  color: var(--fg);
+}
+
+.site-nav > a.is-active {
+  color: var(--fg);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--link);
+}
+
+.site-social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 20px;
+  border-left: 1px solid var(--line);
+}
+
+.social-link {
+  display: inline-flex;
+  color: var(--muted);
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  color: var(--link);
+}
+
+.social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.site-nav a:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.lang-badge {
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 8px;
+}
+
+.category-chip {
+  padding: 2px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.category-chip:hover,
+.category-chip:focus-visible {
+  color: var(--fg);
+  border-color: var(--muted);
+}
+
+.category-chip[aria-current="page"] {
+  color: var(--bg);
+  background: var(--fg);
+  border-color: var(--fg);
+}
+
+.category-chip-count {
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
 }
 
 .site-main {
@@ -237,11 +363,21 @@ blockquote {
 .page-title,
 .post-header h1 {
   margin-bottom: 8px;
+  font-size: 1.9rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .post-header {
   margin-bottom: 32px;
+}
+
+.page-lede {
+  margin: 0 0 40px;
+  font-family: "Caveat", "Apple Chancery", "Snell Roundhand", cursive;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  color: var(--muted);
 }
 
 .post-meta,
@@ -261,7 +397,7 @@ blockquote {
 
 .post-list-meta {
   justify-content: flex-end;
-  max-width: 14rem;
+  max-width: 17rem;
 }
 
 .post-list-meta time {
@@ -298,37 +434,23 @@ blockquote {
   margin: 0;
 }
 
-.post-year-group,
-.post-category-group {
+.post-year-group {
   margin-top: 32px;
 }
 
-.post-year-group + .post-year-group,
-.post-category-group + .post-category-group {
+.post-year-group + .post-year-group {
   margin-top: 48px;
 }
 
-.post-year-heading,
-.post-category-heading {
+.post-year-heading {
   margin-bottom: 12px;
 }
 
-.post-year-heading h2,
-.post-category-heading h2 {
+.post-year-heading h2 {
   margin: 0;
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.5;
-  font-weight: 400;
-}
-
-.post-category-group {
-  scroll-margin-top: 24px;
-}
-
-.post-category-count {
-  color: var(--muted);
-  font-size: 0.85rem;
   font-weight: 400;
 }
 
@@ -363,6 +485,11 @@ blockquote {
   .layout {
     padding-top: 32px;
     padding-bottom: 48px;
+  }
+
+  .site-social {
+    padding-left: 0;
+    border-left: 0;
   }
 
   .post-list-item {
