@@ -1,0 +1,10 @@
+<time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%Y-%m-%d" }}</time>
+{% unless include.hide_categories %}
+  {% for category in include.post.categories %}
+    {% assign category_anchor = category | slugify: 'pretty' %}
+    <span class="post-category">
+      <span aria-hidden="true">·</span>
+      <a class="post-category-link" href="{{ '/categories/' | relative_url }}#category-{{ category_anchor | uri_escape }}">{{ category | replace: "-", " " | replace: "_", " " | capitalize | escape }}</a>
+    </span>
+  {% endfor %}
+{% endunless %}

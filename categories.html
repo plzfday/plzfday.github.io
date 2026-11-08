@@ -1,0 +1,28 @@
+---
+layout: page
+title: Categories
+permalink: /categories/
+---
+
+{% assign categories = site.categories | sort %}
+
+{% for category in categories %}
+  {% assign category_posts = category[1] | sort: "date" | reverse %}
+  {% assign category_anchor = category[0] | slugify: 'pretty' %}
+
+  <section class="post-category-group" id="category-{{ category_anchor | escape }}">
+    <div class="post-category-heading">
+      <h2>{{ category[0] | replace: "-", " " | replace: "_", " " | capitalize | escape }} <span class="post-category-count">({{ category_posts.size }})</span></h2>
+    </div>
+    <ul class="post-list">
+      {% for post in category_posts %}
+        <li class="post-list-item">
+          <a href="{{ post.url | relative_url }}" class="post-list-link">{{ post.title | escape }}</a>
+          <div class="post-list-meta">{% include post-meta.html post=post hide_categories=true %}</div>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% else %}
+  <p>No categories yet.</p>
+{% endfor %}

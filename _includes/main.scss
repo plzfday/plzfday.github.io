@@ -217,6 +217,7 @@ blockquote {
 
 .site-nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-top: 12px;
 }
@@ -255,19 +256,32 @@ blockquote {
   margin: 0;
 }
 
-.post-year-group + .post-year-group {
+.post-year-group + .post-year-group,
+.post-category-group + .post-category-group {
   margin-top: 40px;
 }
 
-.post-year-heading {
+.post-year-heading,
+.post-category-heading {
   margin-bottom: 8px;
 }
 
-.post-year-heading h2 {
+.post-year-heading h2,
+.post-category-heading h2 {
   margin: 0;
   font-size: 1.4rem;
   line-height: 1.2;
   font-weight: 700;
+}
+
+.post-category-group {
+  scroll-margin-top: 24px;
+}
+
+.post-category-count {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 400;
 }
 
 .post-list-item {
