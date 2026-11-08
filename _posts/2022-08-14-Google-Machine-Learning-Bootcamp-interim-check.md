@@ -2,7 +2,7 @@
 layout: post
 title: "구글 부트캠프 지원부터 중간 점검"
 date: 2022-08-14 11:31:17 +0100
-categories: [Life]
+categories: [life]
 tags: [google, bootcamp, deeplearning]
 ---
 

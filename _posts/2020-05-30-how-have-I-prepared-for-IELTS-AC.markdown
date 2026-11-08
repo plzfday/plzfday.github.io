@@ -2,7 +2,7 @@
 layout: post
 title:  "IELTS Academic overall 7.0 받은 후기 및 공부 방법"
 date:   2020-05-30 12:34:00 +0900
-categories: [Life]
+categories: [life]
 tags: [english]
 ---
 
