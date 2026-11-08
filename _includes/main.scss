@@ -366,6 +366,31 @@ blockquote {
   margin-bottom: 32px;
 }
 
+.home-intro {
+  margin-bottom: 40px;
+}
+
+.home-intro .page-lede {
+  margin-bottom: 8px;
+}
+
+.home-intro-links,
+.home-more {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.home-more {
+  margin-top: 16px;
+}
+
+.home-section-heading {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 .post-footer {
   margin-top: 56px;
   padding-top: 24px;

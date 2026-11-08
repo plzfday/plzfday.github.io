@@ -11,6 +11,10 @@ image_base: "https://raw.githubusercontent.com/plzfday/plzfday-assets/refs/heads
 github_username: plzfday
 linkedin_username: dongyeonpark
 
+# Cloudflare Web Analytics site token (dashboard > Analytics & Logs > Web Analytics).
+# Leave empty to disable. Only loaded in production builds.
+cloudflare_analytics_token: "76b2f01bde25494aaeb469f76335300b"
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag

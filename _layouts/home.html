@@ -3,15 +3,23 @@ layout: default
 ---
 
 {% assign posts = site.posts | sort: "date" | reverse %}
+{% assign recent_limit = 5 %}
+
+<section class="home-intro">
+  <p class="page-lede" lang="en">I write software for cars by day, and fix my own on weekends.</p>
+  <p class="home-intro-links" lang="en"><a href="{{ '/about/' | relative_url }}">More about me →</a></p>
+</section>
 
 <section>
   {% if content != blank %}
     {{ content }}
   {% endif %}
 
+  <h2 class="home-section-heading" lang="en">Recent posts</h2>
+
   {% if posts.size > 0 %}
     <ul class="post-list">
-      {% for post in posts %}
+      {% for post in posts limit: recent_limit %}
         <li class="post-list-item">
           <a href="{{ post.url | relative_url }}" class="post-list-link"{% if post.lang %} lang="{{ post.lang }}"{% endif %}>
             {{ post.title }}
@@ -22,6 +30,9 @@ layout: default
         </li>
       {% endfor %}
     </ul>
+    {% if posts.size > recent_limit %}
+      <p class="home-more" lang="en"><a href="{{ '/archive/' | relative_url }}">All {{ posts.size }} posts →</a></p>
+    {% endif %}
   {% else %}
     <p>No posts yet.</p>
   {% endif %}

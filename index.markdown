@@ -1,7 +1,4 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
-description: Dongyeon Park's personal website on software engineering, automotive security, and life notes.
+description: "Dongyeon Park's blog: writing software for cars, fixing cars on weekends, and notes on engineering and life. Mostly in Korean."
 ---
