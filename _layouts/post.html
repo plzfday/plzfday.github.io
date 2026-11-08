@@ -13,4 +13,27 @@ layout: default
   <div class="post-content">
     {{ content }}
   </div>
+
+  <footer class="post-footer">
+    <p class="post-follow">
+      Enjoyed this? Follow along via <a href="{{ '/feed.xml' | relative_url }}">RSS</a> or <a href="https://github.com/{{ site.github_username }}">GitHub</a>.
+    </p>
+
+    {% if page.previous or page.next %}
+      <nav class="post-nav" aria-label="More posts">
+        {% if page.previous %}
+          <a class="post-nav-link post-nav-older" href="{{ page.previous.url | relative_url }}" rel="prev">
+            <span class="post-nav-label">← Older</span>
+            <span class="post-nav-title"{% if page.previous.lang %} lang="{{ page.previous.lang }}"{% endif %}>{{ page.previous.title | escape }}</span>
+          </a>
+        {% endif %}
+        {% if page.next %}
+          <a class="post-nav-link post-nav-newer" href="{{ page.next.url | relative_url }}" rel="next">
+            <span class="post-nav-label">Newer →</span>
+            <span class="post-nav-title"{% if page.next.lang %} lang="{{ page.next.lang }}"{% endif %}>{{ page.next.title | escape }}</span>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </footer>
 </article>

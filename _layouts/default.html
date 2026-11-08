@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'ko' }}">
   <head>
-    {% assign meta_description = page.description | default: page.excerpt | default: page.content | default: site.description %}
-    {% assign meta_description = meta_description | strip_html | normalize_whitespace | truncate: 160 %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ meta_description | escape }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
     <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
     <link rel="preload" href="{{ '/assets/fonts/Caveat-600-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-    <title>
-      {% if page.title %}
-        {{ page.title }} | {{ site.title }}
-      {% else %}
-        {{ site.title }}
-      {% endif %}
-    </title>
+    {% seo %}
     <style>
       {% include main.scss %}
     </style>
