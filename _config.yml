@@ -15,5 +15,6 @@ plugins:
 
 exclude:
   - mise.toml
+  - scripts
   - vendor
   - Gemfile*

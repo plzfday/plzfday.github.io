@@ -1,0 +1,76 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["fonttools>=4.50", "brotli"]
+# ///
+"""Subset Pretendard to the glyphs this site can use.
+
+Keeps: Latin, punctuation, the 2,350 KS X 1001 Hangul syllables, and
+every character that appears in the site's content. Rerun after writing
+a post that uses rare characters:
+
+    scripts/subset_fonts
+"""
+
+from pathlib import Path
+
+from fontTools import subset
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SOURCE_DIR = REPO_ROOT / "_fonts-src"
+OUTPUT_DIR = REPO_ROOT / "assets" / "fonts"
+FONTS = ["Pretendard-Regular.woff2", "Pretendard-Bold.woff2"]
+CONTENT_GLOBS = ["_posts/*", "*.markdown", "*.html", "_layouts/*.html", "_includes/*.html", "_config.yml"]
+
+BASE_RANGES = [
+    (0x0020, 0x007E),  # ASCII
+    (0x00A0, 0x00FF),  # Latin-1 Supplement
+    (0x2000, 0x206F),  # General Punctuation
+    (0x2190, 0x21FF),  # Arrows
+    (0x3000, 0x303F),  # CJK Symbols and Punctuation
+    (0x3131, 0x318E),  # Hangul Compatibility Jamo
+]
+
+
+def ks_x_1001_hangul():
+    syllables = set()
+    for code in range(0xAC00, 0xD7A4):
+        # EUC-KR encodes the 2,350 KS X 1001 syllables as 2 bytes; Python
+        # spells every other syllable as an 8-byte jamo sequence.
+        if len(chr(code).encode("euc-kr")) == 2:
+            syllables.add(code)
+    return syllables
+
+
+def content_codepoints():
+    codepoints = set()
+    for pattern in CONTENT_GLOBS:
+        for path in REPO_ROOT.glob(pattern):
+            if path.is_file():
+                codepoints.update(ord(c) for c in path.read_text(encoding="utf-8"))
+    return {c for c in codepoints if c >= 0x20}
+
+
+def main():
+    unicodes = ks_x_1001_hangul() | content_codepoints()
+    for start, end in BASE_RANGES:
+        unicodes.update(range(start, end + 1))
+
+    options = subset.Options()
+    options.flavor = "woff2"
+    options.name_IDs = ["*"]
+    options.notdef_outline = True
+
+    for name in FONTS:
+        source = SOURCE_DIR / name
+        output = OUTPUT_DIR / name
+        font = subset.load_font(str(source), options)
+        subsetter = subset.Subsetter(options)
+        subsetter.populate(unicodes=sorted(unicodes))
+        subsetter.subset(font)
+        subset.save_font(font, str(output), options)
+        print(f"{name}: {source.stat().st_size // 1024} KB -> {output.stat().st_size // 1024} KB")
+
+
+if __name__ == "__main__":
+    main()
