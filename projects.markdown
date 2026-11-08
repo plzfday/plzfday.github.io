@@ -79,7 +79,7 @@ description: Things Dongyeon Park is building, and why.
 
 <section class="project">
   <div class="project-head">
-    <h2 class="project-name"><a href="https://github.com/plzfday/project625">Enhancing Fourier Neural Network ↗</a></h2>
+    <h2 class="project-name"><a href="https://github.com/plzfday/project625">Enhancing Fourier Neural Operator ↗</a></h2>
     <span class="project-status">Done</span>
   </div>
   <p class="project-why">Undergraduate final-year project. Experiments on variable modes and positional encoding.</p>
