@@ -3,6 +3,7 @@ layout: post
 title: "도메인을 연 $0.85에 구매했다"
 date: 2026-11-08 09:17:20 +0900
 categories: life
+redirect_from: /life/domain-for-85-cents
 ---
 
 원래 사용하던 `gnod.shop` 도메인이 만료되었기 때문에 새로운 도메인이 필요해졌다.

@@ -2,7 +2,8 @@
 layout: post
 title:  "독후감 <비전공자도 이해할 수 있는 AI 지식>"
 date:   2026-04-11 08:46:00 +0900
-categories: book-review
+categories: books
+redirect_from: /book-review/ai-for-non-majors-book-review
 ---
 
 링크드인에서 팔로잉하고 있는 박상길님의 책을 도서관에서 책 구경하다 우연히 발견했다. 한번도 만나본 적 없는

@@ -2,7 +2,8 @@
 layout: post
 title:  "M5 MacBook Air 13 찐 개발자 후기"
 date:   2026-03-23 22:32:00 +0900
-categories: review
+categories: tools
+redirect_from: /review/m5-macbook-air-review
 ---
 
 M1 MacBook Pro를 사용한지도 6년이 지났다. 그때까지 난 LG 그램만 써오다가 처음으로 macOS를 경험하게 되었는데 아이들 상태에서도 뜨겁고 팬이 쌩쌩 돌던 그램을 사용하다 조용하고 오히려 맨살에 금속이 직접 닿으니 차가운 느낌이 드니 새로운 세상을 발견한 느낌이었다. 그 뒤로 난 앞으로 노트북은 ARM 기반에 맥북을 개인 노트북으로 사용해야겠다고 다짐했었다.

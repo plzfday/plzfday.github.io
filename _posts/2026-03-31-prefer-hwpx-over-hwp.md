@@ -3,6 +3,7 @@ layout: post
 title:  "Hwp 싫어요. Hwpx 좋아요"
 date:   2026-03-31 20:20:00 +0900
 categories: opinion
+redirect_from: /opinion/prefer-hwpx-over-hwp
 ---
 
 현재 다니는 회사에 입사하고 처음 맡았던 작업이 보고서 파일을 hwp로 추출할 수 있는 기능을 구현하는 것이었다. 적절한 라이브러리를 찾아서 [한글 문서 파일 구조 5.0](https://cdn.hancom.com/link/docs/%ED%95%9C%EA%B8%80%EB%AC%B8%EC%84%9C%ED%8C%8C%EC%9D%BC%ED%98%95%EC%8B%9D_5.0_revision1.3.pdf)를 읽어가며 구현했었다. 하지만 우리의 한글 기대를 저버리지 않게 기능하나 구현하기 위해서는 한글 문서가 어떻게 만들어지는 지 충분히 이해하는 과정이 필요했다. 공식 문서가 도움은 되었지만 근본적인 이해를 위해서는 직접 예제 파일을 만들어보고 코드에 break point를 걸어보면서 내부 데이터 구조가 어떻게 바뀌었는지 일일이 분석해야 했다. 이게 정말 힘들었다.

@@ -2,7 +2,8 @@
 layout: post
 title: "Windows 11에서 PowerToys로 Karabina처럼 사용하기"
 date: 2026-08-31 10:42:19 +0900
-categories: review
+categories: tools
+redirect_from: /review/windows-powertoys-review
 ---
 
 [PowerToys](https://learn.microsoft.com/en-us/windows/powertoys/install?tabs=winget%2Cextract-094)라고 Microsoft에서 만든 유틸리티 프로그램이 있다. 오픈소스 프로젝트이고 2~3년 전부터 나도 알게 되어서 계속해서 사용하고 있는 프로그램이다. MacOS에서 경험했던 좋은 유틸 기능들을 하나씩 구현한 느낌이고 지금은 더 높은 확장성과 자유도를 보여주고 있는 것 같다. 그 중에 아주 잘 쓰고 있는 기능이 'Keyboard Manager'이다. `Ctrl+Alt+T`를 누르면 Terminal.exe가 실행되도록 한다든가 `Ctrl+Alt+K`를 누르면 카카오톡이 켜지게 할 수 있다.

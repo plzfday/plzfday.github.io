@@ -2,7 +2,8 @@
 layout: post
 title: Herdr 사용 후기
 date: 2026-09-30
-categories: review
+categories: tools
+redirect_from: /review/herdr-review
 ---
 다들 그렇겠지만 요즘엔 codex나 claude code 같은 AI agent를 사용하는게 기본이 되어버렸다. 처음엔 GUI를 사용하다가 SSH를 통해 모바일에서 일 시키는 등 작업을 편하게 하기 위해서 tmux + Codex CLI 조합을 사용하고 있었다. tmux가 메모리를 적게 먹는 것은 매우 좋지만 사용성이 너무 안 좋았다. pane의 크기를 바꿀 때마다 스크롤이 쭉 되는 걸 봐야 한다든가, 여러 agent를 병렬로 실행시키고 답변을 기다리고 있을 때 어느 쪽에서 답변이 끝났는지 내가 일일이 확인해야 하는 등 agent 사용을 위해 만들어진 도구는 아니다보니 UI/UX가 적절하지 못했다.
 

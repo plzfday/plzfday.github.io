@@ -3,7 +3,8 @@ lang: en
 layout: post
 title:  "Let's use opinionated tools"
 date:   2025-11-30 10:28:35 +0900
-categories: opinion 
+categories: opinion
+redirect_from: /opinion/lets-use-opinionated-tools
 ---
 
 Opinionated tools are programs that have a set of their own rules and the users must

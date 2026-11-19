@@ -5,7 +5,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://12488421.xyz"
 lang: ko
 author: Dongyeon Park
-permalink: /:categories/:title
+permalink: /posts/:title
 image_base: "/assets/images"
 
 github_username: plzfday
@@ -19,6 +19,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 exclude:
   - mise.toml

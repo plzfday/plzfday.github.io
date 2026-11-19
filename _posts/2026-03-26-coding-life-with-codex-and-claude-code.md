@@ -3,6 +3,7 @@ layout: post
 title:  "Codex, Claude Code와 함께하는 코딩 인생"
 date:   2026-03-26 23:32:00 +0900
 categories: life
+redirect_from: /life/coding-life-with-codex-and-claude-code
 ---
 
 GPT 2.0, GPT 2.5 때까지만 하더라도 정말 간단한 질문에도 멍청하게 대답하던 우리의 LLM이 불과 3~4년만에 나보다 훨씬 더 코드를 잘 짠다. 내가 배울 것이 한참 많은 형님이 되었다. 나도 요즘엔 회사에서 내가 직접 코드를 짜는 경우가 거의 없다. AI한테 계획 짜게 하고 계획 검토하고 코드를 짜게 한다. 코드도 사실 기존 코드가 이상하지만 않으면 웬만하면 잘 짠다. 기존 코드가 이상하면 얘도 코드가 산으로 가는 건 있는 거 같다.

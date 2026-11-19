@@ -3,6 +3,7 @@ layout: post
 title: "23개월의 산업기능요원 복무를 마치며"
 date: 2026-08-04 22:38:16 +0900
 categories: life
+redirect_from: /life/completing-military-service
 ---
 
 2026년 8월을 보내며 드는 생각들
