@@ -1,0 +1,20 @@
+#!/bin/sh
+# Render link-preview images from scripts/og.html with a headless Chromium browser.
+#   assets/og-default.png  Korean, used site-wide
+#   assets/og-en.png       English, used by About and Projects
+set -e
+cd "$(dirname "$0")/.."
+for app in "Google Chrome" "Chromium" "Brave Browser" "Microsoft Edge"; do
+  bin="/Applications/$app.app/Contents/MacOS/$app"
+  [ -x "$bin" ] && break
+done
+[ -x "$bin" ] || { echo "og_image: no Chromium-based browser found" >&2; exit 1; }
+
+render() {
+  "$bin" --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+    --window-size=1200,630 --virtual-time-budget=2000 \
+    --screenshot="$PWD/$2" "file://$PWD/scripts/og.html#$1" 2>/dev/null
+  echo "wrote $2"
+}
+render ko assets/og-default.png
+render en assets/og-en.png

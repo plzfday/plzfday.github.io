@@ -1,5 +1,6 @@
 ---
 lang: en
+image: /assets/og-en.png
 layout: page
 title: Projects
 permalink: /projects/

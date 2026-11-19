@@ -31,3 +31,11 @@ git config core.hooksPath .githooks
 ## Fonts
 
 Pretendard is subset to the characters the site uses. After a post with rare characters, run `scripts/subset_fonts`.
+
+## Link-preview images
+
+`assets/og-default.png` (Korean, site-wide) and `assets/og-en.png` (English pages) are rendered from `scripts/og.html`. Edit the copy there, then run:
+
+```
+scripts/og_image
+```

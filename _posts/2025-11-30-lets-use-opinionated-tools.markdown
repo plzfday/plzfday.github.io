@@ -1,5 +1,6 @@
 ---
 lang: en
+image: /assets/og-en.png
 layout: post
 title:  "Let's use opinionated tools"
 date:   2025-11-30 10:28:35 +0900
