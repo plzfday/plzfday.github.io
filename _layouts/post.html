@@ -16,20 +16,24 @@ layout: default
 
   <footer class="post-footer">
     <p class="post-follow">
-      Enjoyed this? Follow along via <a href="{{ '/feed.xml' | relative_url }}">RSS</a> or <a href="https://github.com/{{ site.github_username }}">GitHub</a>, or {% include email-link.html text="reply by email" subject=page.title %}.
+      {% if page.lang == 'en' %}
+        Enjoyed this? Follow along via <a href="{{ '/feed.xml' | relative_url }}">RSS</a> or <a href="https://github.com/{{ site.github_username }}">GitHub</a>, or {% include email-link.html text="reply by email" subject=page.title %}.
+      {% else %}
+        재미있게 읽으셨다면 <a href="{{ '/feed.xml' | relative_url }}">RSS</a>나 <a href="https://github.com/{{ site.github_username }}">GitHub</a>로 소식을 받아보세요. {% include email-link.html text="이메일 답장" subject=page.title %}도 환영합니다.
+      {% endif %}
     </p>
 
     {% if page.previous or page.next %}
       <nav class="post-nav" aria-label="More posts">
         {% if page.previous %}
           <a class="post-nav-link post-nav-older" href="{{ page.previous.url | relative_url }}" rel="prev">
-            <span class="post-nav-label">← Older</span>
+            <span class="post-nav-label">← 이전 글</span>
             <span class="post-nav-title"{% if page.previous.lang %} lang="{{ page.previous.lang }}"{% endif %}>{{ page.previous.title | escape }}</span>
           </a>
         {% endif %}
         {% if page.next %}
           <a class="post-nav-link post-nav-newer" href="{{ page.next.url | relative_url }}" rel="next">
-            <span class="post-nav-label">Newer →</span>
+            <span class="post-nav-label">다음 글 →</span>
             <span class="post-nav-title"{% if page.next.lang %} lang="{{ page.next.lang }}"{% endif %}>{{ page.next.title | escape }}</span>
           </a>
         {% endif %}

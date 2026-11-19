@@ -6,8 +6,8 @@ layout: default
 {% assign recent_limit = 5 %}
 
 <section class="home-intro">
-  <p class="page-lede" lang="en">I write software for cars by day, and fix my own on weekends.</p>
-  <p class="home-intro-links" lang="en"><a href="{{ '/about/' | relative_url }}">More about me →</a></p>
+  <p class="page-lede">낮에는 자동차 소프트웨어를 만들고, 주말에는 내 차를 고칩니다.</p>
+  <p class="home-intro-links"><a href="{{ '/about/' | relative_url }}">더 알아보기 →</a></p>
 </section>
 
 <section>
@@ -15,7 +15,7 @@ layout: default
     {{ content }}
   {% endif %}
 
-  <h2 class="home-section-heading" lang="en">Recent posts</h2>
+  <h2 class="home-section-heading">최근 글</h2>
 
   {% if posts.size > 0 %}
     <ul class="post-list">
@@ -31,9 +31,9 @@ layout: default
       {% endfor %}
     </ul>
     {% if posts.size > recent_limit %}
-      <p class="home-more" lang="en"><a href="{{ '/archive/' | relative_url }}">All {{ posts.size }} posts →</a></p>
+      <p class="home-more"><a href="{{ '/archive/' | relative_url }}">전체 글 {{ posts.size }}편 →</a></p>
     {% endif %}
   {% else %}
-    <p>No posts yet.</p>
+    <p>아직 글이 없습니다.</p>
   {% endif %}
 </section>

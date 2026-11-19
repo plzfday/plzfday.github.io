@@ -9,7 +9,7 @@ permalink: /archive/
 
 {% if categories.size > 0 %}
   <nav class="category-filter" aria-label="Filter by category">
-    <a class="category-chip" href="{{ '/archive/' | relative_url }}" data-category="">All <span class="category-chip-count">{{ posts.size }}</span></a>
+    <a class="category-chip" href="{{ '/archive/' | relative_url }}" data-category="">전체 <span class="category-chip-count">{{ posts.size }}</span></a>
     {% for category in categories %}
       {% assign category_slug = category[0] | slugify: 'pretty' %}
       <a class="category-chip" href="{{ '/archive/' | relative_url }}?category={{ category_slug | uri_escape }}" data-category="{{ category_slug | escape }}">{{ category[0] | replace: "-", " " | replace: "_", " " | capitalize | escape }} <span class="category-chip-count">{{ category[1].size }}</span></a>
@@ -52,7 +52,7 @@ permalink: /archive/
     {% endif %}
   {% endfor %}
 {% else %}
-  <p>No posts yet.</p>
+  <p>아직 글이 없습니다.</p>
 {% endif %}
 
 <script>
