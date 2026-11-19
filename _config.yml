@@ -35,3 +35,11 @@ defaults:
 
 twitter:
   card: summary_large_image
+
+# giscus comments, stored as GitHub Discussions in the repo below.
+# IDs come from https://giscus.app. Set `comments: false` in a post's front matter to hide them.
+giscus:
+  repo: plzfday/plzfday.github.io
+  repo_id: R_kgDOQkfFrQ
+  category: Announcements
+  category_id: DIC_kwDOQkfFrc4DLd3k
