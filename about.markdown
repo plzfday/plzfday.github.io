@@ -1,9 +1,10 @@
 ---
 lang: en
 layout: page
-title: About
+title: Dongyeon Park
+heading: About
 permalink: /about/
-description: "Dongyeon: software engineer building cybersecurity testing software for cars. Weekend car fixes, sim racing, F1, and Japanese on the side."
+description: "I'm Dongyeon, a software engineer in South Korea. I write about what I build, learn, and think about."
 ---
 
 <style>
@@ -63,9 +64,9 @@ description: "Dongyeon: software engineer building cybersecurity testing softwar
   }
 </style>
 
-<p class="page-lede">I write software for cars by day, and fix my own on weekends.</p>
+<p class="page-lede">I'm Dongyeon, a software engineer in South Korea. I write about what I build, learn, and think about.</p>
 
-<p class="about-intro">I'm Dongyeon, a software engineer in South Korea. At work, I build a cybersecurity testing platform that helps automakers meet regulations like UN R155 and R156. Outside of it, I'm drawn to the layer below the code: hardware, and lately, the cars themselves.</p>
+<p class="about-intro">At work, I build testing software for automotive security.</p>
 
 <dl class="about-facts">
   <dt>Now</dt>
