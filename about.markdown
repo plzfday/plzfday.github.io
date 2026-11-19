@@ -87,7 +87,7 @@ description: "I'm Dongyeon, a software engineer in South Korea. I write about wh
       <li><a href="{% post_url 2026-11-08-domain-for-85-cents %}" lang="ko">도메인을 연 $0.85에 구매했다</a>: the cheapest domain I could find, and why it's this blog's address.</li>
       <li><a href="{% post_url 2026-08-04-completing-military-service %}" lang="ko">23개월의 산업기능요원 복무를 마치며</a>: what 23 months of alternative military service taught me about people.</li>
     </ul>
-    <p class="note">Most posts are in Korean. <a href="{{ '/archive/' | relative_url }}">All posts →</a></p>
+    <p class="note"><a href="{{ '/archive/' | relative_url }}">All posts →</a></p>
   </dd>
 
   <dt>Opinions</dt>
